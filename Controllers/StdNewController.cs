@@ -35,7 +35,7 @@ namespace LTQL.Controllers
 
                 stdID = genKey.GenerateKey(studentID);
             }
-            ViewBag.StudentID = stdID;
+            ViewBag.StudnetID = stdID;
             return View();
         }
         [HttpPost]

@@ -10,6 +10,7 @@ namespace LTQL.Controllers
     public class StudentController : Controller
     {
         LTQLDBContext db = new LTQLDBContext();
+        StringProcess genKey = new StringProcess();
         // GET: Student
         public ActionResult Index()
         {
@@ -18,6 +19,20 @@ namespace LTQL.Controllers
         }
         public ActionResult Create()
         {
+            var stdID = "";
+            var countStudent = db.Students.Count();
+            if (countStudent == 0)
+            {
+                stdID = "STD001";
+            }
+            else
+            {
+
+                var studentID = db.Students.ToList().OrderByDescending(m => m.StudentID).FirstOrDefault().StudentID;
+
+                stdID = genKey.GenerateKey(studentID);
+            }
+            ViewBag.StudentID = stdID;
             return View();
         }
         [HttpPost]
@@ -26,11 +41,14 @@ namespace LTQL.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.Students.Add(std);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(std);
         }
+
     }
 }
