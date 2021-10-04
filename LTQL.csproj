@@ -128,6 +128,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StdNewController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -146,9 +148,16 @@
     <Compile Include="Migrations\202109241801014_altr_column_student.Designer.cs">
       <DependentUpon>202109241801014_altr_column_student.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110040353150_create_table_article.cs" />
+    <Compile Include="Migrations\202110040353150_create_table_article.Designer.cs">
+      <DependentUpon>202110040353150_create_table_article.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\Encrytion.cs" />
     <Compile Include="Models\LTQLDBContext.cs" />
+    <Compile Include="Models\requiedAttribute.cs" />
     <Compile Include="Models\StringProcess.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -542,6 +551,13 @@
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\StdNew\Index.cshtml" />
     <Content Include="Views\StdNew\Create.cshtml" />
+    <Content Include="Views\Articles\Create.cshtml" />
+    <Content Include="Views\Articles\Delete.cshtml" />
+    <Content Include="Views\Articles\Details.cshtml" />
+    <Content Include="Views\Articles\Edit.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -568,6 +584,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109241801014_altr_column_student.resx">
       <DependentUpon>202109241801014_altr_column_student.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110040353150_create_table_article.resx">
+      <DependentUpon>202110040353150_create_table_article.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
