@@ -12,6 +12,8 @@ namespace LTQL.Controllers
     {
         Encrytion encry = new Encrytion();
         LTQLDBContext db = new LTQLDBContext();
+        StringProcess strPro = new StringProcess();
+
         // GET: Account
         public ActionResult Register()
         {

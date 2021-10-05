@@ -2,7 +2,7 @@
 
 namespace LTQL.Models
 {
-    internal class requiedAttribute : Attribute
+    internal class RequiedAttribute : Attribute
     {
         public string ErrorMessage { get; set; }
     }

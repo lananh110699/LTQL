@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\StdNewController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
@@ -152,14 +153,20 @@
     <Compile Include="Migrations\202110040353150_create_table_article.Designer.cs">
       <DependentUpon>202110040353150_create_table_article.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110050557416_create_table_role.cs" />
+    <Compile Include="Migrations\202110050557416_create_table_role.Designer.cs">
+      <DependentUpon>202110050557416_create_table_role.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Encrytion.cs" />
     <Compile Include="Models\LTQLDBContext.cs" />
-    <Compile Include="Models\requiedAttribute.cs" />
+    <Compile Include="Models\RequiedAttribute.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\StringProcess.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\UsersRoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -558,6 +565,11 @@
     <Content Include="Views\Articles\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -587,6 +599,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110040353150_create_table_article.resx">
       <DependentUpon>202110040353150_create_table_article.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110050557416_create_table_role.resx">
+      <DependentUpon>202110050557416_create_table_role.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
