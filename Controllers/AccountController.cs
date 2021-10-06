@@ -39,13 +39,9 @@ namespace LTQL.Controllers
         
         public ActionResult Login(string returnUrl)
         {
-            if (checkSession() ==1)
+            if (checkSession() !=0)
             {
-                return RedirectToAction("Index", "Home_ad", new { Area = "admin" });
-            }    
-            else if(checkSession () ==2)
-            {
-                return RedirectToAction("Index", "Home_ad", new { Area = "NV" });
+                return RedirectToLocal(returnUrl);
             }
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -96,7 +92,7 @@ namespace LTQL.Controllers
                 }  
                 else if(checkSession() ==2)
                 {
-                    return RedirectToAction("Index", "Home_ad", new { Areas = "NV" });
+                    return RedirectToAction("Index", "Home_Le", new { Areas = "NV" });
                 }
             }    
             if (Url.IsLocalUrl(returnUrl))
