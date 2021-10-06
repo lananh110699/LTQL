@@ -8,11 +8,11 @@ namespace LTQL.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize(Roles= "admin")]
         public ActionResult Index()
         {
             return View();
         }
-        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

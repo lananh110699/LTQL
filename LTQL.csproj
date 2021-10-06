@@ -157,6 +157,10 @@
     <Compile Include="Migrations\202110050557416_create_table_role.Designer.cs">
       <DependentUpon>202110050557416_create_table_role.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110061056413_add_column_account.cs" />
+    <Compile Include="Migrations\202110061056413_add_column_account.Designer.cs">
+      <DependentUpon>202110061056413_add_column_account.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Article.cs" />
@@ -602,6 +606,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110050557416_create_table_role.resx">
       <DependentUpon>202110050557416_create_table_role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110061056413_add_column_account.resx">
+      <DependentUpon>202110061056413_add_column_account.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

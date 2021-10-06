@@ -7,7 +7,6 @@ using System.Web;
 
 namespace LTQL.Models
 {
-    [Table("Role")]
     public class Role
     {
         [Key]

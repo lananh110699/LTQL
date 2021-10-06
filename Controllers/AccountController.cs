@@ -36,30 +36,48 @@ namespace LTQL.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
+        
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.returnUrl = returnUrl;
+            if (checkSession() ==1)
+            {
+                return RedirectToAction("Index", "Home_ad", new { Area = "admin" });
+            }    
+            else if(checkSession () ==2)
+            {
+                return RedirectToAction("Index", "Home_ad", new { Area = "NV" });
+            }
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult Login(Account acc,string returnUrl)
+        public ActionResult Login(Account acc, string returnUrl)
         {
-            if (ModelState.IsValid)
+            try
             {
-                string encrytionpass = encry.PasswordEncrytion(acc.Password);
-                var model = db.Accounts.Where(m => m.Username == acc.Username && m.Password == encrytionpass).ToList().Count();
-                //thông tin đăng nhập chính xác
-                if (model == 1)
+                if(!string.IsNullOrEmpty(acc.Username)&&!string.IsNullOrEmpty(acc.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(acc.Username, true);
-                    return RedirectToAction("Index", "Home");
+                    using (var db = new LTQLDBContext())
+                    {
+                        var passToMD5 = strPro.GetMD5(acc.Password);
+                        var account = db.Accounts.Where(m => m.Username.Equals(acc.Username) && m.Password.Equals(passToMD5)).Count();
+                        if (account == 1)
+                        {
+                            FormsAuthentication.SetAuthCookie(acc.Username, false);
+                            Session["idUser"] = acc.Username;
+                            Session["roleUser"] = acc.RoleID;
+                            return RedirectToLocal(returnUrl);
+                        }
+                        ModelState.AddModelError("", "Thông tin đăng nhập không chính xác");
+                    }
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Thông tin đăng nhập không chính xác");
-                }
+                ModelState.AddModelError("", "Username and password is requied.");
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Hệ thống đang được bảo trì, vui lòng liên hệ với quản trị viên.");
             }
             return View(acc);
         }
@@ -68,18 +86,52 @@ namespace LTQL.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-        private ActionResult RedirectToLocal (string returnUrl)
+        private ActionResult RedirectToLocal(string returnUrl)
         {
-            if(Url.IsLocalUrl(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl)|| returnUrl =="/")
+            {
+                if(checkSession()==1)
+                {
+                    return RedirectToAction("Index", "Home_ad", new { Areas = "admin" });
+                }  
+                else if(checkSession() ==2)
+                {
+                    return RedirectToAction("Index", "Home_ad", new { Areas = "NV" });
+                }
+            }    
+            if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
-            }    
-            else 
+            }
+            else
             {
-                return RedirectToAction("Index", "Home");
-            } 
+                return RedirectToAction("Index", "Home_ad");
+            }
         }
-
+        //kiểm tra ng dùng đăng nhaaph theo quyền gì
+        private int checkSession()
+        {
+            using (var db = new LTQLDBContext())
+            {
+                var user = HttpContext.Session["idUsser"];
+                if (user != null)
+                {
+                    var role = db.Accounts.Find(user.ToString()).RoleID;
+                    if (user != null)
+                    {
+                        if (role.ToString() == "admin")
+                        {
+                            return 1;
+                        }
+                        else if (role.ToString() == "NV")
+                        {
+                            return 2;
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
 
     }
 }

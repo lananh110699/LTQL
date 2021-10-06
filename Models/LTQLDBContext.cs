@@ -16,6 +16,7 @@ namespace LTQL.Models
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public int MyProperty { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
