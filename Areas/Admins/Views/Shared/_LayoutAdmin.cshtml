@@ -25,14 +25,6 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Student", "Index", "Student")</li>
-                    <li>@Html.ActionLink("Article", "Index", "Articles")</li>
-                    <li>@Html.ActionLink("Account", "Index", "Accounts")</li>
-                    <li>@Html.ActionLink("Role", "Index", "Roles")</li>
-                    <li>@Html.ActionLink("Register", "Register", "Accounts", new { area = "" }, new { @class = "navbar-brand" } )</li>
-                    <li>@Html.ActionLink("Login", "Login", "Accounts", new { area = "" }, new { @class = "navbar-brand" } )</li>
-                    <li>@Html.ActionLink("Logout", "Logout", "Accounts", new { area = "" }, new { @class = "navbar-brand" } )</li>
-                    <li>@Html.ActionLink("Admin", "Index", "HomeAdmin", new { area = "Admins"}, new { @class = "navbar -brand" } )</li>
-                    <li>@Html.ActionLink("Employee", "Index", "HomeEmp", new { area = "Employees" }, new { @class = "navbar -brand" } )</li>
                 </ul>
             </div>
         </div>
@@ -46,8 +38,9 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+

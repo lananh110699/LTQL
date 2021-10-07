@@ -88,11 +88,11 @@ namespace LTQL.Controllers
             {
                 if(checkSession()==1)
                 {
-                    return RedirectToAction("Index", "Home_ad", new { Areas = "admin" });
+                    return RedirectToAction("Index", "HomeAdmin", new { Areas = "Admins" });
                 }  
                 else if(checkSession() ==2)
                 {
-                    return RedirectToAction("Index", "Home_Le", new { Areas = "NV" });
+                    return RedirectToAction("Index", "HomeEmp", new { Areas = "Employees" });
                 }
             }    
             if (Url.IsLocalUrl(returnUrl))

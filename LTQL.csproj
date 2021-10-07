@@ -128,6 +128,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admins\AdminsAreaRegistration.cs" />
+    <Compile Include="Areas\Admins\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Employees\Controllers\HomeEmpController.cs" />
+    <Compile Include="Areas\Employees\EmployeesAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -190,6 +194,12 @@
     <Content Include="Scripts\ckeditor\ckeditor.asp" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
+    <Content Include="Areas\Admins\Views\web.config" />
+    <Content Include="Areas\Admins\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admins\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admins\Views\HomeAdmin\About.cshtml" />
+    <Content Include="Areas\Employees\Views\web.config" />
+    <Content Include="Areas\Employees\Views\HomeEmp\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1-vsdoc.js" />
     <Content Include="Scripts\ckeditor\ckeditor.php" />
     <Content Include="Scripts\ckeditor\ckeditor_basic.js" />
@@ -577,6 +587,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admins\Data\" />
+    <Folder Include="Areas\Employees\Data\" />
+    <Folder Include="Areas\Employees\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
