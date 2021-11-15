@@ -17,4 +17,5 @@ namespace LTQL.Models
         [AllowHtml]
         public string ArticleContent { get; set; }
     }
+   
 }

@@ -165,10 +165,15 @@
     <Compile Include="Migrations\202110061056413_add_column_account.Designer.cs">
       <DependentUpon>202110061056413_add_column_account.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111150703260_create_table_ep.cs" />
+    <Compile Include="Migrations\202111150703260_create_table_ep.Designer.cs">
+      <DependentUpon>202111150703260_create_table_ep.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Encrytion.cs" />
+    <Compile Include="Models\ExcelProcess.cs" />
     <Compile Include="Models\LTQLDBContext.cs" />
     <Compile Include="Models\RequiedAttribute.cs" />
     <Compile Include="Models\Role.cs" />
@@ -622,6 +627,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110061056413_add_column_account.resx">
       <DependentUpon>202110061056413_add_column_account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111150703260_create_table_ep.resx">
+      <DependentUpon>202111150703260_create_table_ep.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

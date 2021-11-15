@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -13,11 +14,29 @@ namespace LTQL.Controllers
     public class ArticlesController : Controller
     {
         private LTQLDBContext db = new LTQLDBContext();
+        ExcelProcess ExcelPro = new ExcelProcess();
 
         // GET: Articles
         public ActionResult Index()
         {
-            return View(db.Articles.ToList());
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Index(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                string path = Server.MapPath("~/Files/");
+                if (!System.IO.Directory.Exists(path))
+                {
+                    System.IO.Directory.CreateDirectory(path);
+                }
+
+                file.SaveAs(path + System.IO.Path.GetFileName(file.FileName));
+                ViewBag.Response = "Successful.";
+            }
+
+            return View();
         }
 
         // GET: Articles/Details/5
@@ -123,5 +142,16 @@ namespace LTQL.Controllers
             }
             base.Dispose(disposing);
         }
+        private DataTable CopyDataFromExcelFile(HttpPostedFileBase file)
+        {
+            string fileExtention = file.FileName.Substring(file.FileName.IndexOf("."));
+            string _FileName = "Ten_File_Muon_Luu" + fileExtention;
+            string _path = Path.Combine(Server.MapPath("~/Upload/Excels"), _FileName);
+            file.SaveAs(_path);
+            DataTable dt = ExcelPro.ReadDataFromExcelFile(_path, false);
+            return dt;
+        }
     }
+   
+
 }

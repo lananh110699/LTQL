@@ -10,6 +10,14 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Action_Name", "Controller_Name", FormMethod.Post, new
+{enctype= "multipart/form-data"}))
+{
+    <div>
+        @Html.TextBox("file", "", new { type = "file" })<br />
+        <input type="submit" value="Upload" />
+    </div>
+}
 <table class="table">
     <tr>
         <th>
@@ -21,20 +29,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author)
-        </td>
-        <td>
-            @Html.Raw(item.ArticleContent)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ArticleID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ArticleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ArticleID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.Raw(item.ArticleContent)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ArticleID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ArticleID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ArticleID })
+            </td>
+        </tr>
+    }
 
 </table>
