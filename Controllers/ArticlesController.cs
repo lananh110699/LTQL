@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,6 +16,7 @@ namespace LTQL.Controllers
     {
         private LTQLDBContext db = new LTQLDBContext();
         ExcelProcess ExcelPro = new ExcelProcess();
+        SqlConnection con = new SqlConnection(ConfigurationManage.connectionStrings["LTQLDBContext"].ConnectionString);
 
         // GET: Articles
         public ActionResult Index()
@@ -150,6 +152,21 @@ namespace LTQL.Controllers
             file.SaveAs(_path);
             DataTable dt = ExcelPro.ReadDataFromExcelFile(_path, false);
             return dt;
+        }
+        private void OverwriteFastData(int? ArticleID)
+        {
+            //dt là databasecos chứa dữ liệu để import vào database
+            DataTable dt = new DataTable();
+
+            //mapping các column trong database vào các column trong table ở CSDL
+            SqlBulkCopy bulkcopy = new SqlBulkCopy(con);
+            bulkcopy.DestinationTableName = "Article";
+            bulkcopy.ColumnMappings.Add(0, "Column_Name_0");
+            bulkcopy.ColumnMappings.Add(1, "Column_Name_1");
+            bulkcopy.ColumnMappings.Add(2, "Column_Name_2");
+            con.Open();
+            bulkcopy.WriteToServer(dt);
+            con.Close();
         }
     }
    
